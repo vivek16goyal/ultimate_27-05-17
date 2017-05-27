@@ -1082,6 +1082,7 @@ function CheckMono() {
                     {
                         //$(".hide-page-loading-msg").click();                    
                         SendingOTP();
+                        ReadOTP();
                     }
                 },
                 //if any error occure
