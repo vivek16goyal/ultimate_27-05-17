@@ -1007,6 +1007,27 @@ function ResendOTP() {
 function CheckMono() {
     try {
         //alert('in check mono');
+        
+            if ($("#txtMoNO").val().length >= 10) {
+                var charCode = (e.which) ? e.which : event.keyCode
+                if (charCode != 8) {
+                    e.preventDefault();
+                }
+            }
+        
+            if ($("#txtRegName").val().length <= 3)
+            {
+                alert("Enter Proper Name");
+
+            }
+        
+       
+            if ($("#txtMoNO").val().length < 10)
+            {
+                alert("Enter Proper Mobile No");
+                $("#txtMoNO").focus();
+            }
+
         var Name = $("#txtRegName").val().trim();
         var MoNo = $("#txtMoNO").val().trim();
         var Address = $("#txtadd").val().trim();
@@ -1186,7 +1207,7 @@ function closeVerification() {
 }
 
 $(document).ready(function () {
-    $("#txtMoNO").keydown(function (e) {
+    $("#idRegCon").keydown(function (e) {
         if ($("#txtMoNO").val().length >= 10) {
             var charCode = (e.which) ? e.which : event.keyCode
             if (charCode != 8) {
@@ -1194,13 +1215,13 @@ $(document).ready(function () {
             }
         }
     });
-    $("#txtRegName").blur(function (e) {
+    $("#idRegCon").blur(function (e) {
         if ($("#txtRegName").val().length <= 3) {
             alert("Enter Proper Name");
 
         }
     });
-    $("#txtMoNO").blur(function (e) {
+    $("#idRegCon").blur(function (e) {
         if ($("#txtMoNO").val().length < 10) {
             alert("Enter Proper Mobile No");
             $("#txtMoNO").focus();
