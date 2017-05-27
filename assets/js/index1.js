@@ -1009,10 +1009,9 @@ function CheckMono() {
         //alert('in check mono');
         
             if ($("#txtMoNO").val().length >= 10) {
-                var charCode = (e.which) ? e.which : event.keyCode
-                if (charCode != 8) {
-                    e.preventDefault();
-                }
+               // var charCode = (e.which) ? e.which : event.keyCode
+                alert("Enter Proper Mobile No");
+                $("#txtMoNO").focus();
             }
         
             if ($("#txtRegName").val().length <= 3)
