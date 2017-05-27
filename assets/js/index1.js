@@ -3018,6 +3018,8 @@ function fun_showCart() {
     } else {
         $("#cart-pre").hide();
         $("#lbl-cart-pre").hide();
+        $("#td2").hide();
+        
     }
     window.location.href = "#Item-cart";
 }
