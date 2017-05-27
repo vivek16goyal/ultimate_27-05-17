@@ -1008,15 +1008,18 @@ function CheckMono() {
     try {
         //alert('in check mono');
         
-            if ($("#txtMoNO").val().length >= 10) {
+            if ($("#txtMoNO").val().length > 10) {
                // var charCode = (e.which) ? e.which : event.keyCode
                 alert("Enter Proper Mobile No");
                 $("#txtMoNO").focus();
+                return;
+                
             }
         
             if ($("#txtRegName").val().length <= 3)
             {
                 alert("Enter Proper Name");
+                return;
 
             }
         
@@ -1025,6 +1028,7 @@ function CheckMono() {
             {
                 alert("Enter Proper Mobile No");
                 $("#txtMoNO").focus();
+                return;
             }
 
         var Name = $("#txtRegName").val().trim();
