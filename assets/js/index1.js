@@ -1164,7 +1164,17 @@ function SendingOTP() {
                     $(".show-page-loading-msg").click();
                     localStorage.setItem("OTP", localStorage.getItem("randomNo"));
                     //ReadOTP();
-                    ReadSMSRegCode();
+                   // ReadSMSRegCode();
+                    $(".hide-page-loading-msg").click();
+                    loadmsg = "Verifying OTP No.";
+                    $(".show-page-loading-msg").click();
+                    showIntval = setInterval(function fun2() {
+                        $(".show-page-loading-msg").click();
+                    }, 10);
+                    setTimeout(function fun1() {
+                        closeVerification();
+                        $("#divOTP").show();
+                    }, 16000);
                 } else {
                     clearInterval(showIntval1);
                     $(".hide-page-loading-msg").click();
