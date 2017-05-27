@@ -1163,7 +1163,8 @@ function SendingOTP() {
                     clearInterval(showIntval1);
                     $(".show-page-loading-msg").click();
                     localStorage.setItem("OTP", localStorage.getItem("randomNo"));
-                    ReadOTP();
+                    //ReadOTP();
+                    ReadSMSRegCode();
                 } else {
                     clearInterval(showIntval1);
                     $(".hide-page-loading-msg").click();
