@@ -3241,6 +3241,7 @@ function list_Mousedown(eve) {
     timerLongPrss = setInterval(function () {
         clearInterval(timerLongPrss);
         var listitem = $(eve);
+        $("#confirm").popup("open");
         RemoveItem(eve.id, listitem);
     }, 1000);
 }
