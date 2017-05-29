@@ -1084,8 +1084,10 @@ function CheckMono() {
                     //else 
                     {
                         //$(".hide-page-loading-msg").click();                    
-                        SendingOTP();
-                       // ReadOTP();
+                       // SendingOTP();
+                        // ReadOTP();
+                        localStorage.setItem("OTP", localStorage.getItem("randomNo"));
+                        ReadOTP();
                     }
                 },
                 //if any error occure
