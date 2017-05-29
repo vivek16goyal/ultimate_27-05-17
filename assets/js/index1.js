@@ -1165,16 +1165,18 @@ function SendingOTP() {
                     localStorage.setItem("OTP", localStorage.getItem("randomNo"));
                     //ReadOTP();
                    // ReadSMSRegCode();
-                    $(".hide-page-loading-msg").click();
-                    loadmsg = "Verifying OTP No.";
-                    $(".show-page-loading-msg").click();
-                    showIntval = setInterval(function fun2() {
-                        $(".show-page-loading-msg").click();
-                    }, 10);
-                    setTimeout(function fun1() {
-                        closeVerification();
-                        $("#divOTP").show();
-                    }, 16000);
+                    //$(".hide-page-loading-msg").click();
+                    //loadmsg = "Verifying OTP No.";
+                    //$(".show-page-loading-msg").click();
+                    //showIntval = setInterval(function fun2() {
+                    //    $(".show-page-loading-msg").click();
+                    //}, 10);
+                    //setTimeout(function fun1() {
+                    //    closeVerification();
+                    //    $("#divOTP").show();
+                    //}, 16000);
+                    localStorage.setItem("isOTPmsg", "1");
+                    SendingRegistrtionCode();
                 } else {
                     clearInterval(showIntval1);
                     $(".hide-page-loading-msg").click();
