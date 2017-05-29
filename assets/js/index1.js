@@ -1084,10 +1084,10 @@ function CheckMono() {
                     //else 
                     {
                         //$(".hide-page-loading-msg").click();                    
-                       // SendingOTP();
+                        SendingOTP();
                         // ReadOTP();
-                        localStorage.setItem("OTP", localStorage.getItem("randomNo"));
-                        ReadOTP();
+                        //localStorage.setItem("OTP", localStorage.getItem("randomNo"));
+                        //ReadOTP();
                     }
                 },
                 //if any error occure
@@ -1165,7 +1165,7 @@ function SendingOTP() {
                     clearInterval(showIntval1);
                     $(".show-page-loading-msg").click();
                     localStorage.setItem("OTP", localStorage.getItem("randomNo"));
-                    //ReadOTP();
+                    ReadOTP();
                    // ReadSMSRegCode();
                     //$(".hide-page-loading-msg").click();
                     //loadmsg = "Verifying OTP No.";
@@ -1177,8 +1177,8 @@ function SendingOTP() {
                     //    closeVerification();
                     //    $("#divOTP").show();
                     //}, 16000);
-                    localStorage.setItem("isOTPmsg", "1");
-                    SendingRegistrtionCode();
+                    //localStorage.setItem("isOTPmsg", "1");
+                    //SendingRegistrtionCode();
                 } else {
                     clearInterval(showIntval1);
                     $(".hide-page-loading-msg").click();
