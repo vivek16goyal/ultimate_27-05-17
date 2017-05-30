@@ -209,7 +209,11 @@ function cliencode_check() {
             window.location = "Retailer.html";
         }
         else {
-            window.location = "SRepresentation.html"
+           // var clientcode = localStorage.getItem("ClientCode");
+             {
+                window.location = "SRepresentation.html"
+            }
+            
         }
 
     }
@@ -490,23 +494,49 @@ function sch_mas() {
             cache: false,
             success: function (data) {
                 debugger;
+                var res, year, month, date, today, dd, yyyy;
                 if (data != 0) {
                     //  qty, stdt, eddt, free
+                    debugger;
                     qty = data[0].QTY;
                     stdt = data[0].STARTDATE;
                     eddt = data[0].ENDDATE;
                     free = data[0].FREE;
-                    $("sm_free").text("For" + qty + "We Have" + free + "free");
+
+                    res = eddt.split("-",3);
+                    year =parseInt( res[0]);
+                    month =parseInt( res[1]);
+                    date = res[2];
+                    date = parseInt(date.substring(0,2));
+                    today = new Date();
+                    dd = parseInt(today.getDate());
+                    mm = parseInt(today.getMonth() + 1); //January is 0!
+                    yyyy = parseInt(today.getFullYear());
+
+                    if (dd < date && mm < month) {
+                       
+                        $("sm_free").text("For" + qty + "We Have" + free + "free");
+                    }
+                    else {
+                        $("sm_free").text("No Scheme Available");
+                    }
                 }
+
                 else {
                     $("sm_free").text("No Scheme Available");
                 }
                 // $("#lblRetailrate")
-                if (data == 0) {
+                if (data == 0 ) {
                     $("#sm_free").text("No scheme available");
                     qty = "";
                 } else {
-                    $("#sm_free").text("For " + qty + " ITEM We Have " + free + " free");
+                    if (dd < date && mm < month) {
+
+                        $("sm_free").text("For" + qty + "We Have" + free + "free");
+                    }
+                    else {
+                        $("sm_free").text("No Scheme Available");
+                    }
                 }
             }
 
@@ -632,9 +662,9 @@ function BackButton() {
 }
 
 function Reload() {
-   
+
     document.getElementById('Img16').src = "";
-  
+
     window.location.href = "#page-con";
     window.location.reload();
 }
@@ -1005,29 +1035,27 @@ function ResendOTP() {
 function CheckMono() {
     try {
         //alert('in check mono');
-        
-            if ($("#txtMoNO").val().length > 10) {
-               // var charCode = (e.which) ? e.which : event.keyCode
-                alert("Enter Proper Mobile No");
-                $("#txtMoNO").focus();
-                return;
-                
-            }
-        
-            if ($("#txtRegName").val().length <= 3)
-            {
-                alert("Enter Proper Name");
-                return;
 
-            }
-        
-       
-            if ($("#txtMoNO").val().length < 10)
-            {
-                alert("Enter Proper Mobile No");
-                $("#txtMoNO").focus();
-                return;
-            }
+        if ($("#txtMoNO").val().length > 10) {
+            // var charCode = (e.which) ? e.which : event.keyCode
+            alert("Enter Proper Mobile No");
+            $("#txtMoNO").focus();
+            return;
+
+        }
+
+        if ($("#txtRegName").val().length <= 3) {
+            alert("Enter Proper Name");
+            return;
+
+        }
+
+
+        if ($("#txtMoNO").val().length < 10) {
+            alert("Enter Proper Mobile No");
+            $("#txtMoNO").focus();
+            return;
+        }
 
         var Name = $("#txtRegName").val().trim();
         var MoNo = $("#txtMoNO").val().trim();
@@ -1164,7 +1192,7 @@ function SendingOTP() {
                     $(".show-page-loading-msg").click();
                     localStorage.setItem("OTP", localStorage.getItem("randomNo"));
                     ReadOTP();
-                   // ReadSMSRegCode();
+                    // ReadSMSRegCode();
                     //$(".hide-page-loading-msg").click();
                     //loadmsg = "Verifying OTP No.";
                     //$(".show-page-loading-msg").click();
@@ -1923,8 +1951,7 @@ function Register() {
             city = localStorage.getItem("Ctcode");
         }
         var area = $("#selArea").val();
-        if (localStorage.getItem("Acode") != "" && localStorage.getItem("Acode") != null)
-        {
+        if (localStorage.getItem("Acode") != "" && localStorage.getItem("Acode") != null) {
             area = localStorage.getItem("Acode");
         }
         var WebSerUrl = localStorage.getItem("APIURL");
@@ -2409,7 +2436,7 @@ function onPhotoURISuccess(imageURI) {  ///////////
     smallImage.src = imageURI;
     document.getElementById('Img16').src = imageURI;
     localStorage.setItem("ImagePath", imageURI);
-  //  count = count + 1;
+    //  count = count + 1;
     //if (count == 0) {
     //    document.getElementById('Img16').src = imageURI;
     //    localStorage.setItem("ImagePath", imageURI);
@@ -3029,8 +3056,8 @@ function ShowNxtWind() {
 
 function fun_nextItem() {
     ClearItemInfo();
-   
-    
+
+
     $("#itm-srch").focus();
     if (localStorage.getItem("IsFromReorder") == "1") {
         window.location.href = "#Item-cart";
@@ -3047,9 +3074,9 @@ function fun_nextItem() {
 function fun_showCart() {
     fun_AddItemInCart();
     var smallImage = document.getElementById('sel_image');
-  //  multimplyimage();
+    //  multimplyimage();
     var image = smallImage.src;
-    if (smallImage.src.indexOf("No_image.png") < 0) {        
+    if (smallImage.src.indexOf("No_image.png") < 0) {
         document.getElementById("cart-pre").src = image;
         $("#cart-pre").show();
         $("#lbl-cart-pre").show();
@@ -3057,7 +3084,7 @@ function fun_showCart() {
         $("#cart-pre").hide();
         $("#lbl-cart-pre").hide();
         $("#td2").hide();
-        
+
     }
     window.location.href = "#Item-cart";
 }
@@ -3068,12 +3095,10 @@ function multimplyimage(imageURI) {
     //$("#cart-pre").hide();
     //$("#lbl-cart-pre").hide()
     var image = smallImage.src;
-   
+
     //image 1
-    if (smallImage.src.indexOf("No_image.png") < 0  ) 
-    {
-         if (document.getElementById('sel_image').src != "") 
-        {
+    if (smallImage.src.indexOf("No_image.png") < 0) {
+        if (document.getElementById('sel_image').src != "") {
             {
                 $("#cart-pre").show();
                 $("#lbl-cart-pre").show()
@@ -3590,7 +3615,7 @@ function cancel_order() {
 
 
 }
-function SetVrDeetail(vrno, TotalAmt, pcode, data,remark) {
+function SetVrDeetail(vrno, TotalAmt, pcode, data, remark) {
     try {
         ShowMsgOrdSave();
         ShowPopupDivMsg();
@@ -3632,7 +3657,7 @@ function SetVrDeetail(vrno, TotalAmt, pcode, data,remark) {
             var remark = itm[i].Remark;
             if (name == null)
             { name = remark }
-            
+
             $("#div_itemList tr:last").after(
                 "<tr><td style='width:50px;text-align:center'>" + j + ".</td> <td  style='width:340px;'>" + name + "</td><td style='text-align:center'>" + itm[i].Qty + "+" + itm[i].free + "</td><td style=' text-align:right;'>" + (Number(itm[i].Rate) * Number(itm[i].Qty)).toFixed(4) + "</td></tr></tbody>");
         }
