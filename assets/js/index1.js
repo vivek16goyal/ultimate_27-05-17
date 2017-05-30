@@ -632,11 +632,9 @@ function BackButton() {
 }
 
 function Reload() {
-    document.getElementById('Img15').src = "";
+   
     document.getElementById('Img16').src = "";
-    document.getElementById('Img19').src = "";
-    document.getElementById('Img20').src = "";
-    document.getElementById('Img21').src = "";
+  
     window.location.href = "#page-con";
     window.location.reload();
 }
@@ -750,7 +748,7 @@ function CheckPartyRegistration(val) {
     else {
         var APIURL = localStorage.getItem("APIURL");
         //var url = GBCServicePath + "/Values/checkparty?PtCode=" + clientCode;
-        var url = APIURL + "/Values/checkparty?PtCode=" + clientCode;
+        var url = APIURL + "/Values/checkparty?PtCode=" + clientCode + "&pcode=" + PCODE;
         try {
             $.ajax({
                 url: url,
@@ -3176,7 +3174,7 @@ function fun_AddItemInCart() {
                 $("#grid_Ord").show();
                 $("#Itm_Grid").append(
                      //document.getElementById("button1").addEventListener('touchstart',button1Pressed);
-                     "<li onclick='fun_showItmInfo(this.id);' ontouchstart='list_Mousedown(this)'  onmousedown='list_Mousedown(this)' onmouseup='list_MouseUp()' class='ui-first-child ui-last-child'  id=" + i + ">" +
+                     "<li onclick='fun_showItmInfo(this.id);' ontouchstart='list_Mousedown(this)' onmousedown='list_Mousedown(this)'  onmouseup='list_MouseUp()' class='ui-first-child ui-last-child'  id=" + i + ">" +
                                "<a href='#Item-Info-Search-Body'  class='ui-btn' >" +
                                     "<label style='float:right;font-size:13px;background-color:#137ab0;color:white;padding:3px;font-weight:lighter;'>" + data.MRP + "</label>" +
                                     "<p style='color:#137ab0;font-size:13px;font-weight:bold'>" + data.Iname + "</p>" +
@@ -3592,7 +3590,7 @@ function cancel_order() {
 
 
 }
-function SetVrDeetail(vrno, TotalAmt, pcode, data) {
+function SetVrDeetail(vrno, TotalAmt, pcode, data,remark) {
     try {
         ShowMsgOrdSave();
         ShowPopupDivMsg();
@@ -3626,12 +3624,17 @@ function SetVrDeetail(vrno, TotalAmt, pcode, data) {
         $("#div_itemList").html("");
         var itm = data;
         if (itm.length > 0) {
-            $("#div_itemList").append("<table  class='CSSTableGenerator' style='border-collapse:collapse;width:100%'><tr><td style='width:30px;'>SrNo</td><td >Item Name</td><td >Qty+Free</td><td >Value</td></tr>");
+            $("#div_itemList").append("<table  class='CSSTableGenerator' style='border-collapse:collapse;width:100%'><tr><td style='width:30px;'>SrNo</td><td >Item Name</td><td >Qty+Free</td><td >Amount</td></tr>");
         }
         for (var i = 0; i < itm.length; i++) {
             var j = i + 1;
+            var name = itm[i].INAME;
+            var remark = itm[i].Remark;
+            if (name == null)
+            { name = remark }
+            
             $("#div_itemList tr:last").after(
-                "<tr><td style='width:50px;text-align:center'>" + j + ".</td> <td  style='width:340px;'>" + itm[i].INAME + "</td><td style='text-align:center'>" + itm[i].Qty + "+" + itm[i].free + "</td><td style=' text-align:right;'>" + (Number(itm[i].Rate) * Number(itm[i].Qty)).toFixed(4) + "</td></tr></tbody>");
+                "<tr><td style='width:50px;text-align:center'>" + j + ".</td> <td  style='width:340px;'>" + name + "</td><td style='text-align:center'>" + itm[i].Qty + "+" + itm[i].free + "</td><td style=' text-align:right;'>" + (Number(itm[i].Rate) * Number(itm[i].Qty)).toFixed(4) + "</td></tr></tbody>");
         }
 
     } catch (e) {
