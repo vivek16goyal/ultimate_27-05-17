@@ -802,7 +802,8 @@ function areaall() {
 
     // this is called when a successful transaction happens
     function successCallBack() {
-        alert("DEBUGGING: Database is created Succefully");
+        //change to stop alert
+       // alert("DEBUGGING: Database is created Succefully");
 
     }
 
@@ -813,7 +814,8 @@ function areaall() {
 
         // This alert is used to make sure the application is loaded correctly
         // you can comment this out once you have the application working
-        alert("DEBUGGING: This funtion is used for the Offline Mode we are Fetching Data for the offline work ");
+        //change to stop alert
+      //  alert("DEBUGGING: This funtion is used for the Offline Mode we are Fetching Data for the offline work ");
 
         if (!window.openDatabase) {
             // not all mobile devices support databases  if it does not, the
